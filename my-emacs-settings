@@ -1,0 +1,91 @@
+;; Reload .emacs without restarting M-x eval-buffer
+
+
+;; AUTO-GENERATED SETTINGS
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(all-the-icons-dired prettier-js magit web-mode emmet-mode company github-theme all-the-icons neotree gruvbox-theme monokai-theme hemisu-theme auctex))
+ '(tool-bar-mode nil))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:family "IBM Plex Mono" :foundry "outline" :slant normal :weight normal :height 98 :width normal)))))
+
+
+;; USER-DEFINED SETTINGS
+
+;; Adding MELPA
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+;; Comment/uncomment this line to enable MELPA Stable if desired.  See `package-archive-priorities`
+;; and `package-pinned-packages`. Most users will not need or want to do this.
+;;(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+(package-initialize)
+
+;; Disable toolbar
+(tool-bar-mode -1)
+
+;; AucTex
+;;(load "auctex.el" nil t t)
+;;(load "preview-latex.el" nil t t)
+
+
+;; Hemisu theme
+;;(load-theme 'hemisu-dark t)
+;;(load-theme 'hemisu-light t)
+
+;; Monokai theme
+;;(load-theme 'monokai t)
+
+;; Gruvbox theme
+;;(load-theme 'gruvbox-dark-medium t)
+;;(load-theme 'gruvbox-light-medium t)
+
+;; Github theme
+(load-theme 'github t)
+
+;; Neotree
+(add-to-list 'load-path "C:/Users/Linh/AppData/Roaming/.emacs.d/elpa/neotree-20200324.1946/neotree")
+(require 'neotree)
+(global-set-key [f8] 'neotree-toggle)
+(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+
+;; All the icon
+(require 'all-the-icons)
+
+;; All the icon for dired mode
+(add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
+
+;; Company auto-complete
+(add-hook 'after-init-hook 'global-company-mode)
+
+;; Emmet
+(add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
+(add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
+(setq emmet-expand-jsx-className? t) ;; default nil
+(setq emmet-self-closing-tag-style " /") ;; default "/"
+
+;; Web-mode
+(require 'web-mode)
+(add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+
+;; Prettier-js
+(require 'prettier-js)
+(add-hook 'web-mode-hook 'prettier-js-mode)
+;; In addition, you must install diffutils
+
+
+
