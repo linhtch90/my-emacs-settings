@@ -9,17 +9,15 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(js2-mode company-web company all-the-icons-dired prettier-js magit web-mode emmet-mode github-theme all-the-icons neotree gruvbox-theme monokai-theme hemisu-theme auctex))
+   '(vs-dark-theme vs-light-theme format-all lsp-mode rjsx-mode prettier-js web-mode emmet-mode ac-js2 company-flow company-web company-quickhelp all-the-icons neotree apropospriate-theme auctex))
  '(tool-bar-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "IBM Plex Mono" :foundry "outline" :slant normal :weight normal :height 98 :width normal)))))
+ '(default ((t (:family "Consolas" :foundry "outline" :slant normal :weight normal :height 113 :width normal)))))
 
-
-;; USER-DEFINED SETTINGS
 
 ;; Adding MELPA
 (require 'package)
@@ -29,30 +27,26 @@
 ;;(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (package-initialize)
 
+
+;; USER-DEFINED SETTINGS
+
 ;; Disable toolbar
 (tool-bar-mode -1)
 
-;; AucTex
-;;(load "auctex.el" nil t t)
-;;(load "preview-latex.el" nil t t)
+;; apropospriate-theme
+;;(require 'apropospriate)
+;;(load-theme 'apropospriate-dark t)
+;; or
+;;(load-theme 'apropospriate-light t)
 
+;; vs-light-theme
+(load-theme 'vs-light t)
 
-;; Hemisu theme
-;;(load-theme 'hemisu-dark t)
-;;(load-theme 'hemisu-light t)
-
-;; Monokai theme
-;;(load-theme 'monokai t)
-
-;; Gruvbox theme
-;;(load-theme 'gruvbox-dark-medium t)
-;;(load-theme 'gruvbox-light-medium t)
-
-;; Github theme
-(load-theme 'github t)
+;; vs-dark-theme
+;; (load-theme 'vs-dark t)
 
 ;; Neotree
-(add-to-list 'load-path "C:/Users/Linh/AppData/Roaming/.emacs.d/elpa/neotree-20200324.1946/neotree")
+(add-to-list 'load-path "C:/Users/Linh/.emacs.d/elpa/neotree-20200324.1946/neotree")
 (require 'neotree)
 (global-set-key [f8] 'neotree-toggle)
 (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
@@ -63,16 +57,33 @@
 ;; All the icon for dired mode
 (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
 
-;; Company auto-complete
+;; Company
 (add-hook 'after-init-hook 'global-company-mode)
 (setq company-idle-delay 0)
 
-;; Company-web
-(require 'company) ; load company mode
-(require 'company-web-html) ; load company mode html backend
+;; company-quickhelp
+(company-quickhelp-mode)
+
+;; company-web
+(require 'company) ;; load company mode
+(require 'company-web-html) ;; load company mode html backend
 ;; and/or
-(require 'company-web-jade) ; load company mode jade backend
-(require 'company-web-slim) ; load company mode slim backend
+;;(require 'company-web-jade) ;; load company mode jade backend
+;;(require 'company-web-slim) ;; load company mode slim backend
+
+;; you may key bind, for example for web-mode:
+;; (define-key web-mode-map (kbd "C-'") 'company-web-html)
+
+;; company-flow
+;;(eval-after-load 'company
+;;  (add-to-list 'company-backends 'company-flow))
+
+;; ac-js2
+(add-to-list 'company-backends 'ac-js2-company)
+
+;; company-lsp
+;;(require 'company-lsp)
+;;(push 'company-lsp company-backends)
 
 ;; Emmet
 (add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
@@ -103,8 +114,21 @@
 ;; Use Emacs 27 and want to write JSX?  Then use js2-minor-mode
 (add-hook 'js-mode-hook 'js2-minor-mode)
 
+;; rjsx-mode
+(add-to-list 'auto-mode-alist '("components\\/.*\\.js\\'" . rjsx-mode))
 
+;; lsp-mode
+(require 'lsp-mode)
+(add-hook 'prog-mode-hook #'lsp)
 
+;; nov for reading epub
+;;(add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
+;; nov default font settings
+;;(defun my-nov-font-setup ()
+;;  (face-remap-add-relative 'variable-pitch :family "Arial"
+;;                                           :height 1.0))
+;;(add-hook 'nov-mode-hook 'my-nov-font-setup)
 
-
+;; format-all
+;; Just do M-x format-all-buffer and it will try its best to do the right thing. To auto-format code on save, use the minor mode format-all-mode
 
