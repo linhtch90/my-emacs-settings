@@ -33,6 +33,11 @@
 ;; Disable toolbar
 (tool-bar-mode -1)
 
+;; turn on highlight matching brackets when cursor is on one
+(show-paren-mode 1)
+;; highlight brackets
+(setq show-paren-style 'parenthesis)
+
 ;; apropospriate-theme
 ;;(require 'apropospriate)
 ;;(load-theme 'apropospriate-dark t)
