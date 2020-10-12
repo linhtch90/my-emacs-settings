@@ -39,9 +39,6 @@
 ;; display line number
 (global-display-line-numbers-mode)
 
-;; default tab-width
-(setq-default tab-width 2)
-
 ;; turn on highlight matching brackets when cursor is on one
 (show-paren-mode 1)
 ;; highlight brackets
