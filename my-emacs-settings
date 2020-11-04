@@ -9,14 +9,17 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(global-display-line-numbers-mode t)
  '(package-selected-packages
-   '(org neotree all-the-icons company-quickhelp company-web ac-js2 emmet-mode web-mode prettier-js rjsx-mode lsp-mode format-all vs-light-theme vs-dark-theme autopair auctex)))
+   '(plantuml-mode zenburn-theme monokai-theme which-key leuven-theme gruvbox-theme org neotree all-the-icons company-quickhelp company-web ac-js2 emmet-mode web-mode prettier-js rjsx-mode lsp-mode format-all vs-light-theme vs-dark-theme autopair auctex))
+ '(show-paren-mode t)
+ '(tool-bar-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Consolas" :foundry "outline" :slant normal :weight normal :height 98 :width normal)))))
+ '(default ((t (:family "Consolas" :foundry "outline" :slant normal :weight normal :height 113 :width normal)))))
 
 
 
@@ -45,8 +48,8 @@
 (setq show-paren-style 'parenthesis)
 
 ;; autopair
-;;(require 'autopair)
-;;(autopair-global-mode) ;; to enable in all buffers
+(require 'autopair)
+(autopair-global-mode) ;; to enable in all buffers
 
 ;; apropospriate-theme
 ;;(require 'apropospriate)
@@ -55,10 +58,22 @@
 ;;(load-theme 'apropospriate-light t)
 
 ;; vs-light-theme
-(load-theme 'vs-light t)
+;;(load-theme 'vs-light t)
 
 ;; vs-dark-theme
 ;; (load-theme 'vs-dark t)
+
+;; gruvbox theme
+;;(load-theme 'gruvbox t)
+
+;; leuven theme
+;;(load-theme 'leuven t)
+
+;; monokai theme
+;;(load-theme 'monokai t)
+
+;; zenburn theme
+(load-theme 'zenburn t)
 
 ;; Neotree
 (add-to-list 'load-path "C:/Users/Linh/.emacs.d/elpa/neotree-20200324.1946/neotree")
@@ -74,6 +89,14 @@
 
 ;; All the icon for dired mode
 (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
+
+;; which-key
+;;(require 'which-key)
+;;(which-key-mode)
+;;(setq which-key-popup-type 'side-window)
+;;(setq which-key-popup-type 'minibuffer)
+;;(which-key-setup-minibuffer)
+;;(setq which-key-use-C-h-commands nil)
 
 ;; Company
 (add-hook 'after-init-hook 'global-company-mode)
@@ -150,10 +173,24 @@
 ;; format-all
 ;; Just do M-x format-all-buffer and it will try its best to do the right thing. To auto-format code on save, use the minor mode format-all-mode
 
+;; Enable plantuml-mode for PlantUML files
+(add-to-list 'auto-mode-alist '("\\.plantuml\\'" . plantuml-mode))
+;; Sample jar configuration
+(setq plantuml-jar-path "~/plantuml.jar")
+(setq plantuml-default-exec-mode 'jar)
+
+;; Sample executable configuration
+;;(setq plantuml-executable-path "/path/to/your/copy/of/plantuml.bin")
+;;(setq plantuml-default-exec-mode 'executable)
+
 ;; Org-mode
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c c") 'org-capture)
+;; Start-up with soft-wrap enabled
+(setq org-startup-truncated nil)
+;; Setting up capture
+;; (setq org-default-notes-file (concat org-directory "/notes.org"))
 
 
 
