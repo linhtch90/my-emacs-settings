@@ -22,7 +22,6 @@
  '(default ((t (:family "Consolas" :foundry "outline" :slant normal :weight normal :height 113 :width normal)))))
 
 
-
 ;; ADDING MELPA
 
 (require 'package)
@@ -51,6 +50,12 @@
 (require 'autopair)
 (autopair-global-mode) ;; to enable in all buffers
 
+;; tab size
+(setq default-tab-width 2)
+
+;; without backup files
+(setq make-backup-files nil)
+
 ;; apropospriate-theme
 ;;(require 'apropospriate)
 ;;(load-theme 'apropospriate-dark t)
@@ -67,13 +72,13 @@
 ;;(load-theme 'gruvbox t)
 
 ;; leuven theme
-;;(load-theme 'leuven t)
+(load-theme 'leuven t)
 
 ;; monokai theme
 ;;(load-theme 'monokai t)
 
 ;; zenburn theme
-(load-theme 'zenburn t)
+;;(load-theme 'zenburn t)
 
 ;; Neotree
 (add-to-list 'load-path "C:/Users/Linh/.emacs.d/elpa/neotree-20200324.1946/neotree")
