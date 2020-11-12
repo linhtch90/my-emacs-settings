@@ -11,7 +11,7 @@
  ;; If there is more than one, they won't work right.
  '(global-display-line-numbers-mode t)
  '(package-selected-packages
-   '(plantuml-mode zenburn-theme monokai-theme which-key leuven-theme gruvbox-theme org neotree all-the-icons company-quickhelp company-web ac-js2 emmet-mode web-mode prettier-js rjsx-mode lsp-mode format-all vs-light-theme vs-dark-theme autopair auctex))
+   '(web-beautify plantuml-mode zenburn-theme monokai-theme which-key leuven-theme gruvbox-theme org neotree all-the-icons company-quickhelp company-web ac-js2 emmet-mode web-mode prettier-js rjsx-mode lsp-mode format-all vs-light-theme vs-dark-theme autopair auctex))
  '(show-paren-mode t)
  '(tool-bar-mode nil))
 (custom-set-faces
@@ -177,6 +177,26 @@
 
 ;; format-all
 ;; Just do M-x format-all-buffer and it will try its best to do the right thing. To auto-format code on save, use the minor mode format-all-mode
+
+;; Web-beautify to format HTML/CSS/JS Code by pressing C-c b
+(require 'web-beautify) ;; Not necessary if using ELPA package
+(eval-after-load 'js2-mode
+  '(define-key js2-mode-map (kbd "C-c b") 'web-beautify-js))
+;; Or if you're using 'js-mode' (a.k.a 'javascript-mode')
+(eval-after-load 'js
+  '(define-key js-mode-map (kbd "C-c b") 'web-beautify-js))
+
+(eval-after-load 'json-mode
+  '(define-key json-mode-map (kbd "C-c b") 'web-beautify-js))
+
+(eval-after-load 'sgml-mode
+  '(define-key html-mode-map (kbd "C-c b") 'web-beautify-html))
+
+(eval-after-load 'web-mode
+  '(define-key web-mode-map (kbd "C-c b") 'web-beautify-html))
+
+(eval-after-load 'css-mode
+  '(define-key css-mode-map (kbd "C-c b") 'web-beautify-css))
 
 ;; Enable plantuml-mode for PlantUML files
 (add-to-list 'auto-mode-alist '("\\.plantuml\\'" . plantuml-mode))
