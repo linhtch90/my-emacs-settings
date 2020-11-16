@@ -198,11 +198,15 @@
 (eval-after-load 'css-mode
   '(define-key css-mode-map (kbd "C-c b") 'web-beautify-css))
   
+
 ;; skewer-mode
 (require 'simple-httpd)
 (add-hook 'js2-mode-hook 'skewer-mode)
 (add-hook 'css-mode-hook 'skewer-css-mode)
 (add-hook 'html-mode-hook 'skewer-html-mode)
+;; M-x eval-expression (setq httpd-root "/path/to/files") from within emacs at any time
+;; M-x httpd-start, and open the index.html file in the browser, by visiting http://localhost:8080/index.html
+
 
 ;; Enable plantuml-mode for PlantUML files
 (add-to-list 'auto-mode-alist '("\\.plantuml\\'" . plantuml-mode))
