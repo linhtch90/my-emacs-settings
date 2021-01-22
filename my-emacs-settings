@@ -1,5 +1,5 @@
-;; Reload .emacs without restarting M-x eval-buffer
 
+;; Reload .emacs without restarting M-x eval-buffer
 
 
 ;; AUTO-GENERATED SETTINGS
@@ -11,7 +11,7 @@
  ;; If there is more than one, they won't work right.
  '(global-display-line-numbers-mode t)
  '(package-selected-packages
-   '(web-beautify plantuml-mode zenburn-theme monokai-theme which-key leuven-theme gruvbox-theme org neotree all-the-icons company-quickhelp company-web ac-js2 emmet-mode web-mode prettier-js rjsx-mode lsp-mode format-all vs-light-theme vs-dark-theme autopair auctex))
+   '(ng2-mode svelte-mode ember-mode plantuml-mode web-beautify leuven-theme github-modern-theme gruvbox-theme zenburn-theme monokai-theme autopair vs-dark-theme vs-light-theme format-all lsp-mode rjsx-mode prettier-js web-mode emmet-mode ac-js2 company-flow company-web company-quickhelp all-the-icons neotree apropospriate-theme auctex))
  '(show-paren-mode t)
  '(tool-bar-mode nil))
 (custom-set-faces
@@ -22,15 +22,13 @@
  '(default ((t (:family "Consolas" :foundry "outline" :slant normal :weight normal :height 113 :width normal)))))
 
 
-;; ADDING MELPA
-
+;; Adding MELPA
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 ;; Comment/uncomment this line to enable MELPA Stable if desired.  See `package-archive-priorities`
 ;; and `package-pinned-packages`. Most users will not need or want to do this.
 ;;(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (package-initialize)
-
 
 
 ;; USER-DEFINED SETTINGS
@@ -50,9 +48,6 @@
 (require 'autopair)
 (autopair-global-mode) ;; to enable in all buffers
 
-;; tab size
-(setq default-tab-width 2)
-
 ;; without backup files
 (setq make-backup-files nil)
 
@@ -68,25 +63,27 @@
 ;; vs-dark-theme
 ;; (load-theme 'vs-dark t)
 
-;; gruvbox theme
-;;(load-theme 'gruvbox t)
-
-;; leuven theme
-(load-theme 'leuven t)
-
 ;; monokai theme
 ;;(load-theme 'monokai t)
 
 ;; zenburn theme
 ;;(load-theme 'zenburn t)
 
+;; gruvbox theme
+;;(load-theme 'gruvbox-dark-hard t)
+
+;; github modern theme
+;;(load-theme 'github-modern t)
+
+;; leuven theme
+(load-theme 'leuven t)
+
 ;; Neotree
 (add-to-list 'load-path "C:/Users/Linh/.emacs.d/elpa/neotree-20200324.1946/neotree")
 (require 'neotree)
 (global-set-key [f8] 'neotree-toggle)
 (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
-
-;; resize neotree
+;; Neotree resizing
 (setq neo-window-fixed-size nil)
 
 ;; All the icon
@@ -94,14 +91,6 @@
 
 ;; All the icon for dired mode
 (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
-
-;; which-key
-;;(require 'which-key)
-;;(which-key-mode)
-;;(setq which-key-popup-type 'side-window)
-;;(setq which-key-popup-type 'minibuffer)
-;;(which-key-setup-minibuffer)
-;;(setq which-key-use-C-h-commands nil)
 
 ;; Company
 (add-hook 'after-init-hook 'global-company-mode)
@@ -178,7 +167,7 @@
 ;; format-all
 ;; Just do M-x format-all-buffer and it will try its best to do the right thing. To auto-format code on save, use the minor mode format-all-mode
 
-;; Web-beautify to format HTML/CSS/JS Code by pressing C-c b
+;; web-beautify
 (require 'web-beautify) ;; Not necessary if using ELPA package
 (eval-after-load 'js2-mode
   '(define-key js2-mode-map (kbd "C-c b") 'web-beautify-js))
@@ -197,7 +186,6 @@
 
 (eval-after-load 'css-mode
   '(define-key css-mode-map (kbd "C-c b") 'web-beautify-css))
-  
 
 ;; skewer-mode
 (require 'simple-httpd)
@@ -206,7 +194,6 @@
 (add-hook 'html-mode-hook 'skewer-html-mode)
 ;; M-x eval-expression (setq httpd-root "/path/to/files") from within emacs at any time
 ;; M-x httpd-start, and open the index.html file in the browser, by visiting http://localhost:8080/index.html
-
 
 ;; Enable plantuml-mode for PlantUML files
 (add-to-list 'auto-mode-alist '("\\.plantuml\\'" . plantuml-mode))
@@ -227,5 +214,12 @@
 ;; Setting up capture
 ;; (setq org-default-notes-file (concat org-directory "/notes.org"))
 
+;; Svelte-mode
+;; (require 'svelte-mode)
 
+;; Angular ng2-mode
+(with-eval-after-load 'typescript-mode (add-hook 'typescript-mode-hook #'lsp))
+
+;; Disable backup files
+(setq make-backup-files nil)
 
