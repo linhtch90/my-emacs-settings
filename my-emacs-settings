@@ -1,8 +1,4 @@
-
-;; Reload .emacs without restarting M-x eval-buffer
-
-
-;; AUTO-GENERATED SETTINGS
+;; AUTO-GENERATED SETTINGS (After installing auctex)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -11,7 +7,7 @@
  ;; If there is more than one, they won't work right.
  '(global-display-line-numbers-mode t)
  '(package-selected-packages
-   '(ng2-mode svelte-mode ember-mode plantuml-mode web-beautify leuven-theme github-modern-theme gruvbox-theme zenburn-theme monokai-theme autopair vs-dark-theme vs-light-theme format-all lsp-mode rjsx-mode prettier-js web-mode emmet-mode ac-js2 company-flow company-web company-quickhelp all-the-icons neotree apropospriate-theme auctex))
+   '(neotree all-the-icons company-quickhelp company-web ac-js2 emmet-mode web-mode prettier-js rjsx-mode lsp-mode format-all autopair leuven-theme web-beautify ng2-mode auctex))
  '(show-paren-mode t)
  '(tool-bar-mode nil))
 (custom-set-faces
@@ -19,17 +15,16 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Consolas" :foundry "outline" :slant normal :weight normal :height 113 :width normal)))))
+ )
 
+;; ADDING MELPA
 
-;; Adding MELPA
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 ;; Comment/uncomment this line to enable MELPA Stable if desired.  See `package-archive-priorities`
 ;; and `package-pinned-packages`. Most users will not need or want to do this.
 ;;(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (package-initialize)
-
 
 ;; USER-DEFINED SETTINGS
 
@@ -44,36 +39,12 @@
 ;; highlight brackets
 (setq show-paren-style 'parenthesis)
 
-;; autopair
-(require 'autopair)
-(autopair-global-mode) ;; to enable in all buffers
-
 ;; without backup files
 (setq make-backup-files nil)
 
-;; apropospriate-theme
-;;(require 'apropospriate)
-;;(load-theme 'apropospriate-dark t)
-;; or
-;;(load-theme 'apropospriate-light t)
-
-;; vs-light-theme
-;;(load-theme 'vs-light t)
-
-;; vs-dark-theme
-;; (load-theme 'vs-dark t)
-
-;; monokai theme
-;;(load-theme 'monokai t)
-
-;; zenburn theme
-;;(load-theme 'zenburn t)
-
-;; gruvbox theme
-;;(load-theme 'gruvbox-dark-hard t)
-
-;; github modern theme
-;;(load-theme 'github-modern t)
+;; autopair
+(require 'autopair)
+(autopair-global-mode) ;; to enable in all buffers
 
 ;; leuven theme
 (load-theme 'leuven t)
@@ -109,16 +80,8 @@
 ;; you may key bind, for example for web-mode:
 ;; (define-key web-mode-map (kbd "C-'") 'company-web-html)
 
-;; company-flow
-;;(eval-after-load 'company
-;;  (add-to-list 'company-backends 'company-flow))
-
 ;; ac-js2
 (add-to-list 'company-backends 'ac-js2-company)
-
-;; company-lsp
-;;(require 'company-lsp)
-;;(push 'company-lsp company-backends)
 
 ;; Emmet
 (add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
@@ -156,14 +119,6 @@
 (require 'lsp-mode)
 (add-hook 'prog-mode-hook #'lsp)
 
-;; nov for reading epub
-;;(add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
-;; nov default font settings
-;;(defun my-nov-font-setup ()
-;;  (face-remap-add-relative 'variable-pitch :family "Arial"
-;;                                           :height 1.0))
-;;(add-hook 'nov-mode-hook 'my-nov-font-setup)
-
 ;; format-all
 ;; Just do M-x format-all-buffer and it will try its best to do the right thing. To auto-format code on save, use the minor mode format-all-mode
 
@@ -187,24 +142,6 @@
 (eval-after-load 'css-mode
   '(define-key css-mode-map (kbd "C-c b") 'web-beautify-css))
 
-;; skewer-mode
-(require 'simple-httpd)
-(add-hook 'js2-mode-hook 'skewer-mode)
-(add-hook 'css-mode-hook 'skewer-css-mode)
-(add-hook 'html-mode-hook 'skewer-html-mode)
-;; M-x eval-expression (setq httpd-root "/path/to/files") from within emacs at any time
-;; M-x httpd-start, and open the index.html file in the browser, by visiting http://localhost:8080/index.html
-
-;; Enable plantuml-mode for PlantUML files
-(add-to-list 'auto-mode-alist '("\\.plantuml\\'" . plantuml-mode))
-;; Sample jar configuration
-(setq plantuml-jar-path "~/plantuml.jar")
-(setq plantuml-default-exec-mode 'jar)
-
-;; Sample executable configuration
-;;(setq plantuml-executable-path "/path/to/your/copy/of/plantuml.bin")
-;;(setq plantuml-default-exec-mode 'executable)
-
 ;; Org-mode
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c a") 'org-agenda)
@@ -214,12 +151,14 @@
 ;; Setting up capture
 ;; (setq org-default-notes-file (concat org-directory "/notes.org"))
 
-;; Svelte-mode
-;; (require 'svelte-mode)
-
 ;; Angular ng2-mode
 (with-eval-after-load 'typescript-mode (add-hook 'typescript-mode-hook #'lsp))
 
-;; Disable backup files
-(setq make-backup-files nil)
+
+
+
+
+
+
+
 
