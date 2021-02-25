@@ -5,17 +5,15 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(global-display-line-numbers-mode t)
  '(package-selected-packages
-   '(neotree all-the-icons company-quickhelp company-web ac-js2 emmet-mode web-mode prettier-js rjsx-mode lsp-mode format-all autopair leuven-theme web-beautify ng2-mode auctex))
- '(show-paren-mode t)
- '(tool-bar-mode nil))
+   '(meghanada lsp-javacomp web-mode web-beautify rjsx-mode prettier-js ng2-mode neotree lsp-mode leuven-theme format-all emmet-mode elpy company-web company-quickhelp autopair auctex all-the-icons ac-js2)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
 
 ;; ADDING MELPA
 
@@ -25,6 +23,7 @@
 ;; and `package-pinned-packages`. Most users will not need or want to do this.
 ;;(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (package-initialize)
+
 
 ;; USER-DEFINED SETTINGS
 
@@ -36,6 +35,7 @@
 
 ;; turn on highlight matching brackets when cursor is on one
 (show-paren-mode 1)
+
 ;; highlight brackets
 (setq show-paren-style 'parenthesis)
 
@@ -50,7 +50,7 @@
 (load-theme 'leuven t)
 
 ;; Neotree
-(add-to-list 'load-path "C:/Users/Linh/.emacs.d/elpa/neotree-20200324.1946/neotree")
+(add-to-list 'load-path "C:\\Users\\Linh\\AppData\\Roaming\\.emacs.d\\elpa\\neotree-20200324.1946\\neotree")
 (require 'neotree)
 (global-set-key [f8] 'neotree-toggle)
 (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
@@ -154,11 +154,26 @@
 ;; Angular ng2-mode
 (with-eval-after-load 'typescript-mode (add-hook 'typescript-mode-hook #'lsp))
 
+;; Enable Elpy for Python development
+;;(package-initialize)
+(elpy-enable)
 
-
-
-
-
-
+;; Meghanada Java
+(require 'meghanada)
+(add-hook 'java-mode-hook
+          (lambda ()
+            ;; meghanada-mode on
+            (meghanada-mode t)
+            (flycheck-mode +1)
+            (setq c-basic-offset 2)
+            ;; use code format
+            (add-hook 'before-save-hook 'meghanada-code-beautify-before-save)))
+(cond
+   ((eq system-type 'windows-nt)
+    (setq meghanada-java-path (expand-file-name "bin/java.exe" (getenv "JAVA_HOME")))
+    (setq meghanada-maven-path "mvn.cmd"))
+   (t
+    (setq meghanada-java-path "java")
+    (setq meghanada-maven-path "mvn")))
 
 
